@@ -730,7 +730,7 @@ func (s *sharedEntryAttributes) Validate(ctx context.Context, errchan chan<- err
 		s.validateLeafRefs(ctx, errchan)
 		s.validateLeafListMinMaxAttributes(errchan)
 		s.validatePattern(errchan)
-		s.validateMustStatements(ctx, errchan)
+		//s.validateMustStatements(ctx, errchan)
 		s.validateLength(errchan)
 		s.validateRange(errchan)
 	}
