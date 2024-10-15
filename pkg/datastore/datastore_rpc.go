@@ -415,9 +415,9 @@ func (d *Datastore) storeSyncMsg(ctx context.Context, syncup *target.SyncUpdate,
 	}
 	cNotification.Update = upds.Updates()
 
-	for _, x := range cNotification.GetUpdate() {
-		fmt.Printf("%s\n", x.String())
-	}
+	//for _, x := range cNotification.GetUpdate() {
+	//	fmt.Printf("%s\n", x.String())
+	//}
 
 	for _, del := range cNotification.GetDelete() {
 		store := cachepb.Store_CONFIG
