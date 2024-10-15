@@ -1016,7 +1016,7 @@ func (d *Datastore) expandContainerValue(ctx context.Context, p *sdcpb.Path, jv 
 					return nil, fmt.Errorf("object %q is not a container", item)
 				}
 			default:
-				return nil, fmt.Errorf("unknown object %q under container %q", k, cs.Container.Name)
+				return nil, fmt.Errorf("switch value (type %T) %q unknown object %q under container %q", v, v, k, cs.Container.Name)
 			}
 		}
 		return upds, nil
