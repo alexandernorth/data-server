@@ -1032,7 +1032,7 @@ func (d *Datastore) expandContainerValue(ctx context.Context, p *sdcpb.Path, jv 
 		}
 		return upds, nil
 	default:
-		log.Warnf("unexpected json type cast %T", jv)
+		log.Warnf("unexpected json type cast %T: %v", jv, jv)
 		return nil, nil
 	}
 }
