@@ -238,7 +238,7 @@ func (s *sharedEntryAttributes) checkAndCreateKeysAsLeafs(ctx context.Context, i
 				return err
 			}
 			// convert the key value to the schema defined Typed_Value
-			tv, err := utils.Convert(keyPath[len(keyPath)-levelsUp-1+idx], schem.Schema.GetField().Type)
+			tv, err := utils.Convert(ctx, keyPath[len(keyPath)-levelsUp-1+idx], schem.Schema.GetField().Type)
 			if err != nil {
 				return err
 			}
@@ -781,7 +781,7 @@ func (s *sharedEntryAttributes) tryLoadingDefault(ctx context.Context, path []st
 		return nil, fmt.Errorf("error trying to load defaults for %s: %v", strings.Join(path, "->"), err)
 	}
 
-	upd, err := DefaultValueRetrieve(schema.GetSchema(), path, DefaultValuesPrio, DefaultsIntentName)
+	upd, err := DefaultValueRetrieve(ctx, schema.GetSchema(), path, DefaultValuesPrio, DefaultsIntentName)
 	if err != nil {
 		return nil, err
 	}
@@ -1214,7 +1214,7 @@ func (s *sharedEntryAttributes) ImportConfig(ctx context.Context, t importer.Imp
 		// 	s.treeContext.treeSchemaCacheClient.GetSchema(ctx,)
 		// }
 
-		tv, err := t.GetTVValue(fieldType)
+		tv, err := t.GetTVValue(ctx, fieldType)
 		if err != nil {
 			return err
 		}
@@ -1234,7 +1234,7 @@ func (s *sharedEntryAttributes) ImportConfig(ctx context.Context, t importer.Imp
 			scalarArr = &sdcpb.ScalarArray{Element: []*sdcpb.TypedValue{}}
 		}
 
-		tv, err := t.GetTVValue(x.Leaflist.GetType())
+		tv, err := t.GetTVValue(ctx, x.Leaflist.GetType())
 		if err != nil {
 			return err
 		}
