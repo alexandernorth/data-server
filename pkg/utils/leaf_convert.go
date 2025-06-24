@@ -294,7 +294,6 @@ func ConvertString(ctx context.Context, value string, lst *sdcpb.SchemaLeafType)
 	for _, sp := range lst.Patterns {
 		re, err := regexp.Compile(sp.Pattern)
 		if err != nil {
-			// TODO do we want to use a context logger?
 			log.Error(err, "unable to compile regex", "pattern", sp.Pattern)
 		}
 		match := re.MatchString(value)
